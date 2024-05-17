@@ -21,13 +21,119 @@
           </div>
           <div class="input-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <input type="e-mail" id="email" name="email" placeholder="Enter your email" required>
           </div>
           <div class="input-group">
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
           </div>
-          <button type="submit">Register</button>
+          <button type="submit" onclick="adduser()">Register</button>
+          <button type="button" onclick="updateuser()">updateuser</button>
+          
+          <table border="1">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+        <script>
+            var users = [];
+            function adduser(){
+            var user={
+                firstName:"",
+                lastName:"",
+                email:"",
+                phone:"",
+            };
+            for(a in user){
+                user[a]=document.getElementById(a).value;
+            }
+            users.push(user);
+            displayUser()
+            clearForm()
+        }
+    
+            function displayUser() {
+            document.querySelector("tbody").innerHTML = ""
+            users.forEach((usr,i)=>{
+                var mytr=document.createElement("tr")
+                for(a in usr){
+                    var mytd=document.createElement("td")
+                    mytd.innerHTML=usr[a]
+                    mytr.appendChild(mytd)
+                }
+                var edtd=document.createElement("td");
+                mytr.appendChild(edtd)
+                var edbtn=document.createElement("button")
+                edtd.appendChild(edbtn)
+                edbtn.innerHTML="Edit"
+                edbtn.setAttribute("onclick","edituser("+i+")")
+    
+                var detd=document.createElement("td");
+                mytr.appendChild(detd)
+                var delbtn=document.createElement("button")
+                detd.appendChild(delbtn)
+                delbtn.innerHTML="Delete"
+                delbtn.setAttribute("onclick","deleteuser("+i+")")
+                
+                document.querySelector("tbody").appendChild(mytr)
+            })
+            }
+            function edituser(i){
+                gIndex=i;
+            for(a in users[i]){
+                document.getElementById(a).value=users[i][a];
+            }
+            document.getElementById("btn").style.display="none"
+            document.getElementById("btn1").style.display="block"
+            displayUser()
+            
+        }
+        function updateuser(){
+            document.getElementById("btn").style.display="block"
+            document.getElementById("btn1").style.display="none"
+            var user={
+                firstName:"",
+                lastName:"",
+                email:"",
+                phone:"",
+            };
+            for(a in user){
+                user[a]=document.getElementById(a).value;
+            }
+            users[gIndex] = user;
+            displayUser()
+            clearForm()
+        }
+        function deleteuser(i){
+            users=users.filter((usr,index)=>{
+                return i!=index
+            })
+            displayUser()
+        }
+            function clearForm(){
+                var user={
+                    firstName:"",
+                    lastName:"",
+                    email:"",
+                    phone:"",
+            };
+            for(a in user){
+                document.getElementById(a).value=""
+                
+            }
+            
+          }
+        </script>
         </form>
     </div>
 </body>

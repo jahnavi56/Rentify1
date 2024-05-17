@@ -36,17 +36,6 @@ nav {
     margin-bottom: 10px;
     text-align: center;
 }
-/* button#button1 {
-    color: blueviolet;
-    background-color: yellow;
-    border: 1;
-    height: 39px;
-    width: 90px;
-    border-radius: 18.5px;
-    text-align: center;
-} */
-/* Reset default styles */
-/* Reset default styles */
 * {
     margin: 0;
     padding: 0;
@@ -112,4 +101,11 @@ nav {
   button[type="submit"]:hover {
     background-color: red;
   }
-  
+  #ran{
+    display: flex;
+    align-items: center;
+  }
+  #ran img{
+    width: 280px;
+    margin-right: 31px;
+}
