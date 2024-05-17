@@ -97,7 +97,16 @@ nav {
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+  button[type="button"] {
+    width: 100%;
+    padding: 10px;
+    background-color:yellow;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
   button[type="submit"]:hover {
     background-color: red;
   }
@@ -108,4 +117,32 @@ nav {
   #ran img{
     width: 280px;
     margin-right: 31px;
+}
+#navigateButton{
+    color: black;
+    background-color: yellow;
+    width:280px;
+    height:70px;
+    margin-right:22px;
+}
+#navigateButton1{
+    color: black;
+    background-color: yellow;
+    width:280px;
+    height:70px;
+    margin-right:22px;
+}
+#navigateButton2{
+    color: black;
+    background-color: yellow;
+    width:280px;
+    height:70px;
+    margin-right:22px;
+}
+#navigateButton3{
+    color: black;
+    background-color: yellow;
+    width:280px;
+    height:70px;
+    margin-right:22px;
 }

@@ -57,6 +57,16 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
+  button[type="button"] {
+    width: 100%;
+    padding: 10px;
+    background-color: yellow;
+    color:black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
   
   button[type="submit"]:hover {
     background-color: red;

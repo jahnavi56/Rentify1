@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <div class="property-form">
+    <h2>Add New Property</h2>
+    <form id="propertyForm">
+      <label for="place">Place:</label>
+      <input type="text" id="place" required><br>
+      <label for="area">Area (in sq. ft.):</label>
+      <input type="number" id="area" required><br>
+      <label for="bedrooms">Bedrooms:</label>
+      <input type="number" id="bedrooms" required><br>
+      <label for="bathrooms">Bathrooms:</label>
+      <input type="number" id="bathrooms" required><br>
+      <label for="nearbyHospitals">Nearby Hospitals:</label>
+      <input type="text" id="nearbyHospitals"><br>
+      <label for="nearbyColleges">Nearby Colleges:</label>
+      <input type="text" id="nearbyColleges"><br>
+      <button type="submit" onclick="adduser()">Add Property</button>
+      <button type="button" onclick="updateuser()">Update</button>
+    </form>
+  </div>
+  <table border="1">
+    <thead>
+        <tr>
+            <th>Place</th>
+            <th>Area</th>
+            <th>Bedrooms</th>
+            <th>Bathrooms</th>
+            <th>Nearby Hospitals</th>
+            <th>Nearby Colleges</th>
+            <th>Edit</th>
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+</form>
+<script>
+var users = [];
+function adduser() {
+    var user = {
+        place: "",
+        area: "",
+        bedrooms: "",
+        bathrooms: "",
+        nearbyHospitals: "",
+        nearbyColleges:""
+    };
+    for (a in user) {
+            user[a] = document.getElementById(a).value;
+    }
+    users.push(user);
+    displayuser();
+    clearform();
+}
+function displayuser() {
+    document.querySelector("tbody").innerHTML = "";
+    users.forEach((usr, i) => {
+        var mytr = document.createElement("tr");
+        for (a in usr) {
+            var mytd = document.createElement("td");
+            mytd.innerHTML = usr[a];
+            mytr.appendChild(mytd);
+        }
+        var edtd = document.createElement("td")
+        mytr.appendChild(edtd)
+        var edbtn = document.createElement("button")
+        edtd.appendChild(edbtn)
+        edbtn.innerHTML = "Edit"
+        edbtn.setAttribute("onclick", "edituser(" + i + ")")
+
+        var detd = document.createElement("td");
+        mytr.appendChild(detd)
+        var debtn = document.createElement("button")
+        detd.appendChild(debtn)
+        debtn.innerHTML = "delete"
+        debtn.setAttribute("onclick", "deleteuser(" + i + ")")
+        document.querySelector("tbody").appendChild(mytr)
+    });
+}
+function edituser(i) {
+    gIndex = i;
+    for (a in users[i]) {
+            document.getElementById(a).value = users[i][a]
+    }
+    document.getElementById("addbutton").style.display = "none"
+    document.getElementById("updatebutton").style.display = "block"
+    displayuser()
+}
+function updateuser() {
+    document.getElementById("addbutton").style.display = "block"
+    document.getElementById("updatebutton").style.display = "none"
+    var user = {
+        place: "",
+        area: "",
+        bedrooms: "",
+        bathrooms: "",
+        nearbyHospitals: "",
+        nearbyColleges:""
+    };
+    for (a in user) {
+            user[a] = document.getElementById(a).value;
+    }
+    users[gIndex] = user;
+    displayuser()
+    clearform()
+}
+function deleteuser(i) {
+    users = users.filter((usr, index) => {
+        return i != index;
+    })
+    displayuser()
+    clearform()
+}
+function clearform() {
+    var user = {
+        place: "",
+        area: "",
+        bedrooms: "",
+        bathrooms: "",
+        nearbyHospitals: "",
+        nearbyColleges:""
+    };
+    for (a in user) {
+            document.getElementById(a).value = ""
+    }
+
+}
+</script>
+  
+</body>
+</html>
